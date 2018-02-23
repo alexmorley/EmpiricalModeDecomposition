@@ -36,11 +36,10 @@ function IMF(y::Array{T,1};
             p_max = (length(max_ar) > maxorder) ? maxorder : minorder(max_ar)
             p_min = (length(min_ar) > maxorder) ? maxorder : minorder(min_ar)
 
-            S1 = interpolate((tmax,), max_ar, Gridded(Cubic(Natural())))
-            S2 = interpolate((tmin,), min_ar, Gridded(Cubic(Natural())))
-
+            S1 = Spline1D(tmax, max_ar, k = p_max)
+            S2 = Spline1D(tmin, min_ar, k = p_min)
             # Find mean of envelope
-            avg   .= (S1[t] .+ S2[t]) / 2
+            avg   .= (S1(t) .+ S2(t)) / 2
             tempy .= tempy .- avg
 
             sd = mean( (avg.^2)./((y-f[:,i]).^2 + eps) )
