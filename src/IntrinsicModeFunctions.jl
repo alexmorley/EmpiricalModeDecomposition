@@ -1,7 +1,7 @@
 #Function to calculate intrinsic mode functions
 #N is the maximum number of modes to find
 """
-IMF(y, t; toldev=0.01, tolzero = 0.01, maxorder=4, N=5)
+IMF(y; toldev=0.01, tolzero = 0.01, maxorder=4, N=5)
 Calculate the intrinsic mode functions of the sequence y along timespan t.
 """
 function IMF(y::Array{T,1};
