@@ -4,6 +4,7 @@ module EmpiricalModeDecomposition
 using DSP
 using Images
 using Interpolations
+using Dierckx
 
 include("util.jl")
 include("IntrinsicModeFunctions.jl")
