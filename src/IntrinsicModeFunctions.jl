@@ -9,6 +9,7 @@ function IMF(y::Array{T,1};
              tolzero::Float64  = 0.01,
              maxorder::Int64   = 4,
              N::Int64          = 5,
+             use_fortran::Bool = true,
              verbose::Bool     = false) where T<:Real
 
 
@@ -29,7 +30,7 @@ function IMF(y::Array{T,1};
         sd = 2*toldev
 
         while (mean(abs.(avg)) > tolzero && sd > toldev) # do sift?
-            sift!(f, avg, residue, eps)
+            sift!(view(f,:,i), avg, residue, y, t, eps, use_fortran)
         end
 
         copy!(residue, f[:,i])
@@ -57,7 +58,7 @@ two. Everything is done in place and nothing is returned.
 
 If use_fortrain is true then we use Dierckx (a fortran library) for interpolation. Otherwise we use (a fork of_ interpolations.jl - which is very beta at the moment).
 """
-function sift!(f, avg, residue, eps, use_fortran=true)
+function sift!(fi, avg, residue, data, t, eps, use_fortran=true)
     # Interpolate a spline through the maxima and minima
     tmax, tmin, max_ar, min_ar  = findExtrema(residue)
    
@@ -65,9 +66,9 @@ function sift!(f, avg, residue, eps, use_fortran=true)
 
     residue .= residue .- avg
 
-    sd = mean((avg.^2) ./ ((y-f[:,i]).^2 + eps) )
+    sd = mean((avg.^2) ./ ((data-fi).^2 + eps) )
 
-    f[:,i] .= f[:,i] .+ avg
+    fi .= fi .+ avg
     return nothing
 end
 
