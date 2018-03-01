@@ -5,8 +5,8 @@ IMF(y; toldev=0.01, tolzero = 0.01, maxorder=4, N=5)
 Calculate the intrinsic mode functions of the sequence y along timespan t.
 """
 function IMF(y::Array{T,1};
-             toldev::Float64   = 0.01,
-             tolzero::Float64  = 0.01,
+             toldev::Float64   = 0.0001,
+             tolzero::Float64  = 0.0001,
              maxorder::Int64   = 4,
              N::Int64          = 5,
              use_fortran::Bool = true,
