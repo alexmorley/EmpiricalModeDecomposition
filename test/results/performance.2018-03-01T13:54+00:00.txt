@@ -1,0 +1,5 @@
+t1000 = Trial(327.124 ms)
+Performance on rand(1000) Trial(327.124 ms)
+t10000 = Trial(3.432 s)
+Performance on rand(10000) Trial(3.432 s)
+Performance on rand(100000) Trial(39.500 s)

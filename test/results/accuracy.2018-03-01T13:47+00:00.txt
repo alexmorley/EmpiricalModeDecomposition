@@ -1,0 +1,33 @@
+Average Mode Recovery Error for 2 Modes is: [0.163656, 0.254409]
+Average Mode Recovery Error for 3 Modes is: [0.184765, 0.257238, 0.178769]
+Average Mode Recovery Error for 4 Modes is: [0.185829, 0.252183, 0.167687, 0.435694]
+Average Mode Recovery Error for 5 Modes is: [0.187234, 0.243712, 0.161211, 0.182395, 0.0987092]
+Assessing performance on simulated data:
+    5 sin waves at freqs 25,20,15,10,5 Hz.
+    Samples: 50000
+    Noise: None
+
+Mode Recovery Error for 2 Modes is:
+	Average [0.163656, 0.254409]
+	Edge Effects: [0.234753, 0.553813]
+	Errors without Edge Effects: [0.137237, 0.17105]
+
+
+Mode Recovery Error for 3 Modes is:
+	Average [0.184765, 0.257238, 0.178769]
+	Edge Effects: [0.288371, 0.527131, 0.3881]
+	Errors without Edge Effects: [0.152674, 0.181558, 0.115834]
+
+
+Mode Recovery Error for 4 Modes is:
+	Average [0.185829, 0.252183, 0.167687, 0.435694]
+	Edge Effects: [0.296185, 0.521413, 0.366916, 0.213682]
+	Errors without Edge Effects: [0.152987, 0.177576, 0.107308, 0.175176]
+
+
+Mode Recovery Error for 5 Modes is:
+	Average [0.187234, 0.243712, 0.161211, 0.182395, 0.0987092]
+	Edge Effects: [0.28524, 0.476158, 0.334253, 0.195124, 0.118631]
+	Errors without Edge Effects: [0.152801, 0.177613, 0.107395, 0.172817, 0.0895668]
+
+

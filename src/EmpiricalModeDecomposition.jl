@@ -12,5 +12,6 @@ include("InstantaneousFrequency.jl")
 
 export findExtrema
 export IMF
+export IF
 
 end # module

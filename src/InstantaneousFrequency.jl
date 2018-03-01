@@ -1,31 +1,31 @@
 """
-    function IF(C, t; x=0, order=4, window=0; fs=1)
+    function IF(C ;order=4, fs=1)
 Calculate instantaneous frequencies
 """
-function IF(C, t, x=0, order=4, window=0; fs=1)
+function IF(C; order=4, fs=1)
 
 	n,N = size(C)
-	n = length(t)
+    t   = 1:n
+	Phi = zeros(n-1,N)
 
-	if x == 0
-		x = t+1e-6
-	end
-
-	if window == 0
-		window = ones(length(x))
-	end
-
-	nx = length(x)
-	Phi = zeros(nx,N)
-
-	for i =1:N
+	@inbounds for i =1:N
         H1 = Spline1D(t, C[:,i], k = order)
-        
-        Phi[1:end,i] = fs/π .* angle.(hilbert(H1[x]))
-        #abs(hilbert(H1[x]))
-        
-       Phi[:,i] = Phi[:,i].*window
+        Phi[:,i] = (fs/2π) .* diff(unwrap(angle.(hilbert(H1(t)))))
     end
 
 	return Phi
 end
+
+function unwrap!(v::AbstractVector, lim=π)
+  for i in 2:length(v)
+    while unwrapped[i] - unwrapped[i-1] >= lim
+      unwrapped[i] -= 2*lim
+    end
+    while unwrapped[i] - unwrapped[i-1] <= -lim
+      unwrapped[i] += 2*lim
+    end
+  end
+  return unwrapped
+end
+
+unwrap(v) = unwrap!(copy(v))
